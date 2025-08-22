@@ -1,0 +1,58 @@
+{
+  "summary": {
+    "passed": 0,
+    "total": 8,
+    "success_rate": 0.0
+  },
+  "results": [
+    {
+      "test": "Health Check",
+      "success": false,
+      "details": "HTTP 502",
+      "timestamp": "2025-08-22T03:18:26.879078"
+    },
+    {
+      "test": "Basic Scenario Generation",
+      "success": false,
+      "details": "HTTP 502",
+      "timestamp": "2025-08-22T03:18:26.888937"
+    },
+    {
+      "test": "Different Question Types",
+      "success": false,
+      "details": "Successfully generated scenarios for 0/4 question types",
+      "timestamp": "2025-08-22T03:18:26.917215"
+    },
+    {
+      "test": "Empty History",
+      "success": false,
+      "details": "HTTP 502",
+      "timestamp": "2025-08-22T03:18:26.928218"
+    },
+    {
+      "test": "History with Data",
+      "success": false,
+      "details": "HTTP 502",
+      "timestamp": "2025-08-22T03:18:26.953044"
+    },
+    {
+      "test": "History Pagination",
+      "success": false,
+      "details": "HTTP 502",
+      "timestamp": "2025-08-22T03:18:26.960666"
+    },
+    {
+      "test": "Error Handling",
+      "success": false,
+      "details": "Correctly handled 0/4 invalid inputs",
+      "timestamp": "2025-08-22T03:18:26.985901"
+    },
+    {
+      "test": "Database Persistence",
+      "success": false,
+      "details": "Failed to generate test scenario",
+      "timestamp": "2025-08-22T03:18:26.992521"
+    }
+  ],
+  "timestamp": "2025-08-22T03:18:26.992738"
+}
