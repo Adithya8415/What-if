@@ -1,26 +1,34 @@
 import React, { useState } from "react";
 import "./App.css";
 import { Toaster } from "./components/ui/toaster";
+import { useToast } from "./hooks/use-toast";
 import Header from "./components/Header";
 import QuestionInput from "./components/QuestionInput";
 import ScenarioDisplay from "./components/ScenarioDisplay";
-import { getMockScenario } from "./data/mock";
+import { generateScenario } from "./data/mock";
 
 function App() {
   const [currentScenario, setCurrentScenario] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const { toast } = useToast();
 
   const handleQuestionSubmit = async (question) => {
     setIsLoading(true);
     setCurrentScenario(null);
 
     try {
-      // Using mock data for now - will be replaced with actual API call
-      const scenario = await getMockScenario(question);
+      // Using actual API call now instead of mock data
+      const scenario = await generateScenario(question);
       setCurrentScenario(scenario);
     } catch (error) {
       console.error('Error generating scenario:', error);
-      // Handle error state here
+      
+      // Show error toast
+      toast({
+        title: "Oops! Something went wrong",
+        description: error.message || "Failed to generate scenario. Please try again.",
+        variant: "destructive"
+      });
     } finally {
       setIsLoading(false);
     }
