@@ -63,12 +63,9 @@ const ScenarioDisplay = ({ scenario, onNewScenario }) => {
                 {scenario.question}
               </h3>
               <div className="flex items-center gap-2 mt-2">
-                <Badge 
-                  variant="outline" 
-                  className={`text-xs ${getMoodColor(scenario.mood)} capitalize`}
-                >
+                <div className={`px-2 py-1 rounded-full text-xs border ${getMoodColor(scenario.mood)} capitalize`}>
                   {scenario.mood}
-                </Badge>
+                </div>
                 <div className="flex items-center gap-1 text-xs text-gray-500">
                   <Clock className="w-3 h-3" />
                   {new Date(scenario.timestamp).toLocaleTimeString([], { 
