@@ -4,9 +4,15 @@ from typing import List, Optional
 import logging
 from datetime import datetime
 
-from ..models.scenario import ScenarioCreate, ScenarioResponse
-from ..services.scenario_service import ScenarioGeneratorService
-from ..database import get_database
+try:
+    from ..models.scenario import ScenarioCreate, ScenarioResponse
+    from ..services.scenario_service import ScenarioGeneratorService
+    from ..database import get_database
+except ImportError:
+    # Fallback for when running as script
+    from models.scenario import ScenarioCreate, ScenarioResponse
+    from services.scenario_service import ScenarioGeneratorService
+    from database import get_database
 
 logger = logging.getLogger(__name__)
 
