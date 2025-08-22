@@ -6,8 +6,13 @@ import logging
 from pathlib import Path
 
 # Import routes
-from .routes.scenarios import router as scenarios_router
-from .database import close_database_connection
+try:
+    from .routes.scenarios import router as scenarios_router
+    from .database import close_database_connection
+except ImportError:
+    # Fallback for when running as script
+    from routes.scenarios import router as scenarios_router
+    from database import close_database_connection
 
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
