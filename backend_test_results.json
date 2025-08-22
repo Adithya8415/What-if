@@ -1,58 +1,58 @@
 {
   "summary": {
-    "passed": 0,
+    "passed": 8,
     "total": 8,
-    "success_rate": 0.0
+    "success_rate": 1.0
   },
   "results": [
     {
       "test": "Health Check",
-      "success": false,
-      "details": "HTTP 502",
-      "timestamp": "2025-08-22T03:18:26.879078"
+      "success": true,
+      "details": "API is running: What If Scenario Generator API is running!",
+      "timestamp": "2025-08-22T03:19:29.257288"
     },
     {
       "test": "Basic Scenario Generation",
-      "success": false,
-      "details": "HTTP 502",
-      "timestamp": "2025-08-22T03:18:26.888937"
+      "success": true,
+      "details": "Generated scenario with mood 'humorous', length 871 chars",
+      "timestamp": "2025-08-22T03:19:32.798363"
     },
     {
       "test": "Different Question Types",
-      "success": false,
-      "details": "Successfully generated scenarios for 0/4 question types",
-      "timestamp": "2025-08-22T03:18:26.917215"
+      "success": true,
+      "details": "Successfully generated scenarios for 4/4 question types",
+      "timestamp": "2025-08-22T03:19:47.076467"
     },
     {
       "test": "Empty History",
-      "success": false,
-      "details": "HTTP 502",
-      "timestamp": "2025-08-22T03:18:26.928218"
+      "success": true,
+      "details": "Correctly returned empty list for new session",
+      "timestamp": "2025-08-22T03:19:47.087346"
     },
     {
       "test": "History with Data",
-      "success": false,
-      "details": "HTTP 502",
-      "timestamp": "2025-08-22T03:18:26.953044"
+      "success": true,
+      "details": "Retrieved 8 scenarios, 8 valid for session",
+      "timestamp": "2025-08-22T03:19:58.201548"
     },
     {
       "test": "History Pagination",
-      "success": false,
-      "details": "HTTP 502",
-      "timestamp": "2025-08-22T03:18:26.960666"
+      "success": true,
+      "details": "Limit parameter working, returned 2 scenarios",
+      "timestamp": "2025-08-22T03:19:58.214973"
     },
     {
       "test": "Error Handling",
-      "success": false,
-      "details": "Correctly handled 0/4 invalid inputs",
-      "timestamp": "2025-08-22T03:18:26.985901"
+      "success": true,
+      "details": "Correctly handled 4/4 invalid inputs",
+      "timestamp": "2025-08-22T03:19:58.333943"
     },
     {
       "test": "Database Persistence",
-      "success": false,
-      "details": "Failed to generate test scenario",
-      "timestamp": "2025-08-22T03:18:26.992521"
+      "success": true,
+      "details": "Scenario correctly saved and retrieved from database",
+      "timestamp": "2025-08-22T03:20:03.093431"
     }
   ],
-  "timestamp": "2025-08-22T03:18:26.992738"
+  "timestamp": "2025-08-22T03:20:03.093654"
 }
