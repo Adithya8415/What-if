@@ -1,52 +1,74 @@
-import { useEffect } from "react";
+import React, { useState } from "react";
 import "./App.css";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import axios from "axios";
+import { Toaster } from "./components/ui/toaster";
+import Header from "./components/Header";
+import QuestionInput from "./components/QuestionInput";
+import ScenarioDisplay from "./components/ScenarioDisplay";
+import { getMockScenario } from "./data/mock";
 
-const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
-const API = `${BACKEND_URL}/api`;
+function App() {
+  const [currentScenario, setCurrentScenario] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
-const Home = () => {
-  const helloWorldApi = async () => {
+  const handleQuestionSubmit = async (question) => {
+    setIsLoading(true);
+    setCurrentScenario(null);
+
     try {
-      const response = await axios.get(`${API}/`);
-      console.log(response.data.message);
-    } catch (e) {
-      console.error(e, `errored out requesting / api`);
+      // Using mock data for now - will be replaced with actual API call
+      const scenario = await getMockScenario(question);
+      setCurrentScenario(scenario);
+    } catch (error) {
+      console.error('Error generating scenario:', error);
+      // Handle error state here
+    } finally {
+      setIsLoading(false);
     }
   };
 
-  useEffect(() => {
-    helloWorldApi();
-  }, []);
+  const handleNewScenario = () => {
+    setCurrentScenario(null);
+  };
 
   return (
-    <div>
-      <header className="App-header">
-        <a
-          className="App-link"
-          href="https://emergent.sh"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <img src="https://avatars.githubusercontent.com/in/1201222?s=120&u=2686cf91179bbafbc7a71bfbc43004cf9ae1acea&v=4" />
-        </a>
-        <p className="mt-5">Building something incredible ~!</p>
-      </header>
-    </div>
-  );
-};
-
-function App() {
-  return (
-    <div className="App">
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Home />}>
-            <Route index element={<Home />} />
-          </Route>
-        </Routes>
-      </BrowserRouter>
+    <div className="min-h-screen bg-gradient-to-br from-orange-25 via-white to-pink-25">
+      <div className="container mx-auto">
+        <Header />
+        
+        <main className="pb-8">
+          <div className="space-y-8">
+            <QuestionInput 
+              onSubmit={handleQuestionSubmit} 
+              isLoading={isLoading} 
+            />
+            
+            {isLoading && (
+              <div className="w-full max-w-2xl mx-auto px-4">
+                <div className="bg-white rounded-lg p-8 shadow-lg border border-orange-200">
+                  <div className="text-center">
+                    <div className="inline-flex items-center gap-3 mb-4">
+                      <div className="animate-spin w-6 h-6 border-3 border-orange-500 border-t-transparent rounded-full"></div>
+                      <span className="text-lg font-semibold text-gray-700">
+                        Generating your scenario...
+                      </span>
+                    </div>
+                    <p className="text-gray-500">
+                      Our AI is crafting something amazing for you
+                    </p>
+                  </div>
+                </div>
+              </div>
+            )}
+            
+            <ScenarioDisplay 
+              scenario={currentScenario} 
+              onNewScenario={handleNewScenario} 
+            />
+          </div>
+        </main>
+      </div>
+      
+      <Toaster />
     </div>
   );
 }
